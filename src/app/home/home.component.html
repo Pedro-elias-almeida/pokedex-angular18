@@ -1,0 +1,23 @@
+<ul>
+  <li *ngFor="let pokedex of pokeRes">
+    <button (click)="onClick(pokedex)">{{ pokedex.name }}</button>
+
+    <ul *ngIf="selectedRegion === pokedex.name && pokemonsInPokedex">
+      <li *ngFor="let pokemon of pokemonsInPokedex">
+        Nome:
+        <button (click)="onPokemonSelected(pokemon)">
+          {{ pokemon.pokemon_species.name }}
+        </button>
+
+        <ul
+          *ngIf="
+            selectedPokemon &&
+            selectedPokemon.name === pokemon.pokemon_species.name
+          "
+        >
+          <img [src]="selectedPokemon.sprites.front_default" />
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
